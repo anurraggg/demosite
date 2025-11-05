@@ -1,0 +1,39 @@
+.blog-hero {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .blog-hero .hero-image {
+    width: 100%;
+    height: 380px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+  
+  .blog-hero .overlay {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: white;
+    text-shadow: 0 0 8px rgba(0,0,0,0.8);
+    width: 90%;
+  }
+  
+  .blog-hero h1 {
+    font-size: 42px;
+    margin: 0;
+  }
+  
+  .blog-hero .subtitle {
+    font-size: 18px;
+    margin: 6px 0;
+  }
+  
+  .blog-hero .meta {
+    font-size: 14px;
+    opacity: 0.9;
+  }
+  
