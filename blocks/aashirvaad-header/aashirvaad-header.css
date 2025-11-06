@@ -1,0 +1,239 @@
+/*
+ * Copyright 2025 Franklin. All rights reserved.
+ * This file is licensed to you under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License. You may obtain a copy
+ * of the License at http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under
+ * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
+ * OF ANY, either express or implied. See the License for the specific language
+ * governing permissions and limitations under the License.
+ */
+
+ .aashirvaad-header {
+  background-color: #d9001d;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  height: 70px;
+  position: relative;
+}
+
+.aashirvaad-header.fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.aashirvaad-header .logo {
+  height: 40px;
+  width: auto;
+  margin-left: 30px;
+  padding-right: 50px;
+}
+
+.aashirvaad-header .nav {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 30px;
+  position: relative;
+}
+
+.aashirvaad-header .nav > li {
+  position: relative;
+}
+
+.aashirvaad-header .nav-item {
+  color: #fff6e3;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  display: block;
+  padding: 10px 0;
+  margin-left: 30px;
+}
+
+.aashirvaad-header .nav-item:hover {
+  text-decoration: underline;
+}
+
+.aashirvaad-header .dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #ffcccc; /* Light red for dropdown */
+  min-width: 200px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  z-index: 1001;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+  list-style: none;
+  padding: 10px 0;
+  margin: 0;
+}
+
+.aashirvaad-header .nav > li:hover .dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.aashirvaad-header .dropdown .nav-item {
+  padding: 8px 20px;
+  font-size: 14px;
+  border-bottom: 1px solid #ff9999;
+}
+
+.aashirvaad-header .dropdown .nav-item:hover {
+  background-color: #ff9999;
+  text-decoration: none;
+}
+
+/* --- MODIFIED RULE --- */
+.aashirvaad-header .search-icon {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  opacity: 1;
+  margin-left: auto; /* <-- CHANGED: Was 600px */
+  padding-left: 20px; /* <-- ADDED: For spacing */
+}
+
+.aashirvaad-header .search-icon:hover {
+  opacity: 1;
+}
+
+/* * This @media block was in your original file. 
+ * We will ADD new rules inside a new, more specific media query.
+ * The .nav rule here will be overridden by the new query.
+ */
+@media (max-width: 768px) {
+  .aashirvaad-header .nav {
+    display: none; /* Hide full nav; add hamburger toggle in JS if needed */
+  }
+
+  .aashirvaad-header .dropdown {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+    background: transparent;
+  }
+
+  .aashirvaad-header .search-icon {
+    display: block;
+  }
+}
+
+/* Add to aashirvaad-header.css for keyboard focus (append to end) */
+
+.aashirvaad-header .nav > li.focused .dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+
+/* --- NEW RESPONSIVE & HAMBURGER STYLES --- */
+/* --- ADD ALL OF THIS TO THE END OF YOUR CSS FILE --- */
+
+/* 1. Style for the hamburger icon */
+.nav-hamburger {
+  display: none; /* Hide on desktop by default */
+  width: 30px;
+  height: 22px;
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-right: 15px; /* Space between hamburger and logo */
+}
+
+.nav-hamburger span {
+  display: block;
+  height: 4px;
+  width: 100%;
+  background-color: white;
+  border-radius: 2px;
+}
+
+/* 2. Responsive styles for mobile */
+@media (max-width: 768px) {
+  .aashirvaad-header {
+    padding: 0 15px; /* Reduce padding on mobile */
+  }
+
+  /* Show the hamburger */
+  .nav-hamburger {
+    display: flex; /* Show it on mobile */
+  }
+
+  /* Reset logo and search margins for mobile layout */
+  .aashirvaad-header .logo {
+    margin-left: 35px;
+    padding-right: 0;
+    margin-top: 10px;
+  }
+  
+  .aashirvaad-header .search-icon {
+    margin-left: 30px;
+    padding-left: 15px;
+  }
+
+  /* Style the mobile menu panel (when 'nav-open' is active) */
+  .aashirvaad-header.nav-open .nav {
+    display: flex; /* Show the nav */
+    flex-direction: column; /* Stack items vertically */
+    position: absolute;
+    top: 70px; /* Position below the header */
+    left: 0;
+    right: 0;
+    background-color: #d9001d; /* Same as header */
+    padding: 10px 0;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+
+  /* Style the mobile nav items */
+  .aashirvaad-header .nav > li {
+    width: 100%;
+  }
+
+  .aashirvaad-header .nav-item {
+    margin-left: 0;
+    padding: 15px 20px; /* Make tap targets bigger */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Make dropdowns appear inline on mobile */
+  .aashirvaad-header .dropdown {
+    position: static;
+    box-shadow: none;
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+    min-width: unset;
+    /* These were already in your media query, which is good */
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+  
+  .aashirvaad-header .dropdown .nav-item {
+    font-size: 16px;
+    padding: 10px 40px; /* Indent sub-items */
+    border-bottom: none; /* Remove double borders */
+  }
+
+  .aashirvaad-header .dropdown .nav-item:hover {
+    background-color: #c00019; /* Darker red on hover */
+  }
+}
